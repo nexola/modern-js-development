@@ -60,3 +60,54 @@ ShoppingCart.addToCart('apple', 4);
 ShoppingCart.addToCart('pizza', 2);
 
 console.log(ShoppingCart.cart);
+
+// npm modules
+// import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+import cloneDeep from 'lodash-es';
+
+const state = {
+  cart: [
+    {
+      product: 'bread',
+      quantity: 5,
+    },
+    {
+      product: 'pizza',
+      quantity: 5,
+    },
+  ],
+  user: {
+    loggedIn: true,
+  },
+};
+
+const stateClone = Object.assign({}, state);
+console.log(stateClone);
+
+state.user.loggedIn = false;
+console.log(stateClone);
+
+const stateCloneDeep = cloneDeep(state);
+state.user.loggedIn = true;
+
+if (module.hot) {
+  module.hot.accept();
+}
+
+class Person {
+  greeting = 'Hey';
+  constructor(name) {
+    this.name = name;
+    console.log(`${this.greeting} ${this.name}`);
+  }
+}
+
+const jonas = new Person('Jonas');
+
+console.log('Jonas' ?? null);
+
+console.log(state.cart.find(el => el.quantity >= 2));
+
+import 'core-js/stable/array/find';
+
+import 'regenerator-runtime/runtime';
